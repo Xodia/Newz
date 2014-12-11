@@ -10,7 +10,7 @@
 #import "Article.h"
 
 @interface DetailViewController ()
-
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 @end
 
 @implementation DetailViewController
@@ -30,6 +30,7 @@
 	// Update the user interface for the detail item.
 	if (self.detailItem) {
 	    self.detailDescriptionLabel.text = [self.detailItem title];
+		[_webView loadHTMLString: _detailItem.summary baseURL:nil];
 	}
 }
 
@@ -37,7 +38,7 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	[self configureView];
-}
+} 
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];

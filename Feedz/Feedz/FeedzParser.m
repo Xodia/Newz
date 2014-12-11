@@ -61,7 +61,7 @@
 // Provides info about a feed item
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-	NSLog(@"ParsingDidParseFeedItem: %@", item);
+	//NSLog(@"ParsingDidParseFeedItem: %@", item);
 	Article *a = [[Article alloc] init];
 	a.title = item.title;
 	a.content = item.content;
