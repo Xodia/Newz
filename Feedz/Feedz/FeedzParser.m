@@ -7,6 +7,17 @@
 //
 
 #import "FeedzParser.h"
+#import <MWFeedParser/MWFeedParser.h>
+#import "Article.h"
+#import "FeedzCache.h"
+
+#define GIZMODO_RSS @"http://feeds.gawker.com/gizmodo/full.rss"
+
+@interface FeedzParser () <MWFeedParserDelegate>
+{
+	MWFeedParser *feedParser;
+}
+@end
 
 @implementation FeedzParser
 
@@ -14,7 +25,12 @@
 {
 	if (self = [super init])
 	{
-	
+		NSURL *feedURL = [NSURL URLWithString:GIZMODO_RSS];
+		feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+		feedParser.delegate = self;
+		feedParser.connectionType = ConnectionTypeAsynchronously;
+		[feedParser parse];
+
 	}
 	return  self;
 }
@@ -28,6 +44,47 @@
 	});
 	
 	return shared;
+}
+
+// Called when data has downloaded and parsing has begun
+- (void)feedParserDidStart:(MWFeedParser *)parser
+{
+	NSLog(@"ParsingDidStart");
+}
+
+// Provides info about the feed
+- (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
+{
+	NSLog(@"ParsingDidParseFeedInfo: %@", info);
+}
+
+// Provides info about a feed item
+- (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
+{
+	NSLog(@"ParsingDidParseFeedItem: %@", item);
+	Article *a = [[Article alloc] init];
+	a.title = item.title;
+	a.content = item.content;
+	a.summary = item.summary;
+	a.identifier = item.identifier;
+	a.link = item.link;
+	a.author = item.author;
+	a.date = item.date;
+	a.updated = item.updated;
+
+	[[FeedzCache sharedCache] insertArticle: a];
+}
+
+// Parsing complete or stopped at any time by `stopParsing`
+- (void)feedParserDidFinish:(MWFeedParser *)parser
+{
+	NSLog(@"feedParserDidFinish");
+}
+
+// Parsing failed
+- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
+{
+	NSLog(@"feedParserDidFail: %@", error);
 }
 
 @end

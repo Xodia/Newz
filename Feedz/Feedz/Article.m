@@ -11,7 +11,7 @@
 
 @implementation Article
 
-@synthesize images, littleImage, bigImage, lDescription, title, content, id_, seederId, author, entity, user_id;
+@synthesize identifier, title, link, date, updated, summary, content, author, entity;
 
 - (instancetype) initWithEntity: (NSManagedObject *) object
 {
@@ -21,14 +21,12 @@
 			entity = object;
 			title = [object valueForKey: @"title"];
 			content = [object valueForKey: @"content"];
-			id_ = [[object valueForKey: @"id"] integerValue];
-			seederId = [[object valueForKey: @"seeder"] integerValue];
-			images = [object valueForKey: @"images"];
-			littleImage = [object valueForKey: @"littleImage"];
-			bigImage = [object valueForKey: @"bigImage"];
-			lDescription = [object valueForKey: @"lDescription"];
+			summary = [object valueForKey: @"summary"];
+			identifier = [object valueForKey: @"identifier"];
+			link = [object valueForKey: @"link"];
 			author = [object valueForKey: @"author"];
-			user_id = [object valueForKey: @"user_id"];
+			date = [object valueForKey: @"date"];
+			updated = [object valueForKey: @"updated"];
 		}
 		@catch (NSException *exception) {
 			NSLog(@"Exception: %@", exception);

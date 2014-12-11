@@ -41,7 +41,7 @@
 		
 		AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 		_managedObjectContext = appDelegate.managedObjectContext;
-		Article *fakeArticle = [[Article alloc] init];
+		//Article *fakeArticle = [[Article alloc] init];
 
 		/*fakeArticle.title = @"Fake Title";
 		fakeArticle.lDescription = @"Petite description";
@@ -92,6 +92,9 @@
 	// if (cache.count == SIZE_CACHE)
 	//	[cache removeObjectAtIndex: 0]; // Remove the first one to erase the oldest article
 	[cache addObject: article];
+	[[NSNotificationCenter defaultCenter]
+	 postNotificationName:@"NewArticle"
+	 object:self];
 }
 
 - (void) removeArticle: (Article *) article
@@ -106,16 +109,16 @@
 	NSError *error;
 	NSEntityDescription *newArticle = [NSEntityDescription insertNewObjectForEntityForName: @"Article" inManagedObjectContext: _managedObjectContext];
 	
+	
 	[newArticle setValue: article.title forKey: @"title"];
-	[newArticle setValue: article.lDescription forKey: @"lDescription"];
-	[newArticle setValue: @(article.seederId) forKey: @"seeder"];
+	[newArticle setValue: article.summary forKey: @"summary"];
+	[newArticle setValue: article.identifier forKey: @"identifier"];
 	[newArticle setValue: article.content forKey: @"content"];
-	[newArticle setValue: article.author forKey: @"author"];
-	[newArticle setValue: article.images forKey: @"images"];
-	[newArticle setValue: article.littleImage forKey: @"littleImage"];
-	[newArticle setValue: [NSDate date] forKey: @"timeStamp"];
-	[newArticle setValue: @(article.id_) forKey: @"id"];
-	[newArticle setValue: article.bigImage forKey: @"bigImage"];
+	[newArticle setValue: article.author forKey: @"title"];
+	[newArticle setValue: article.link forKey: @"link"];
+	[newArticle setValue: article.date forKey: @"date"];
+	[newArticle setValue: article.updated forKey: @"updated"];
+
 	
 	BOOL res = [_managedObjectContext save: &error];
 	NSLog(@"DidSaveArticle: %d", res);

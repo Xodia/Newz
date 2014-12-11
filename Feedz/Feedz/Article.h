@@ -10,24 +10,16 @@
 #import <CoreData/CoreData.h>
 
 @interface Article : NSObject
-{
-	NSInteger articleId, authorId, seederId;
-	NSString *title, *bigImage, *littleImage, *lDescription, *user_id;
-	NSData *content;
-	NSArray *images;
-}
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *author;
-@property (nonatomic, copy) NSString *bigImage;
-@property (nonatomic, copy) NSString *littleImage;
-@property (nonatomic, copy) NSString *user_id;
-@property (nonatomic, copy) NSString *lDescription;
-@property (nonatomic, strong) NSArray *images;
-@property (nonatomic) NSInteger id_;
-@property (nonatomic) NSInteger seederId;
-@property (nonatomic, strong) NSData *content;
 @property (nonatomic, strong) NSManagedObject *entity;
+@property (nonatomic, copy) NSString *identifier; // Item identifier
+@property (nonatomic, copy) NSString *title; // Item title
+@property (nonatomic, copy) NSString *link; // Item URL
+@property (nonatomic, strong) NSDate *date; // Date the item was published
+@property (nonatomic, strong) NSDate *updated; // Date the item was updated if available
+@property (nonatomic, copy) NSString *summary; // Description of item
+@property (nonatomic, copy) NSString *content; // More detailed content (if available)
+@property (nonatomic, copy) NSString *author; // Item author
 
 - (instancetype) initWithEntity: (NSManagedObject *) object;
 

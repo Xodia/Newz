@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "MasterViewController.h"
 #import "FeedzCache.h"
+#import	"FeedzParser.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -35,6 +36,7 @@
 	// initialize singletons
 	
 	[FeedzCache sharedCache];
+	[FeedzParser sharedParser];
 	
 	return YES;
 }

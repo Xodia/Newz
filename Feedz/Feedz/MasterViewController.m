@@ -27,7 +27,22 @@
 	}
 }
 
+- (void) receivedNewArticle: (NSNotification *) notification
+{
+	[self.tableView reloadData];
+}
+
+- (void) dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
 - (void)viewDidLoad {
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(receivedNewArticle:)
+												 name:@"NewArticle"
+											   object:nil];
 	
 	cache = [[FeedzCache sharedCache] cache];
 	
