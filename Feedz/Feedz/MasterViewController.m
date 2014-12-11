@@ -8,9 +8,13 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "FeedzCache.h"
+#import "Article.h"
 
 @interface MasterViewController ()
-
+{
+	NSArray *cache;
+}
 @end
 
 @implementation MasterViewController
@@ -24,12 +28,13 @@
 }
 
 - (void)viewDidLoad {
+	
+	cache = [[FeedzCache sharedCache] cache];
+	
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-	self.navigationItem.rightBarButtonItem = addButton;
 	self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -38,33 +43,14 @@
 	// Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender {
-	NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-	NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-	NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-	    
-	// If appropriate, configure the new managed object.
-	// Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-	[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-	    
-	// Save the context.
-	NSError *error = nil;
-	if (![context save:&error]) {
-	    // Replace this implementation with code to handle the error appropriately.
-	    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-}
-
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"showDetail"]) {
 	    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-	    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+		Article *a = [cache objectAtIndex: indexPath.row];
 	    DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-	    [controller setDetailItem:object];
+	    [controller setDetailItem: a];
 	    controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
 	    controller.navigationItem.leftItemsSupplementBackButton = YES;
 	}
@@ -73,12 +59,12 @@
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [[self.fetchedResultsController sections] count];
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-	return [sectionInfo numberOfObjects];
+
+	return [cache count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -92,64 +78,27 @@
 	return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (editingStyle == UITableViewCellEditingStyleDelete) {
-	    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-	    [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-	        
-	    NSError *error = nil;
-	    if (![context save:&error]) {
-	        // Replace this implementation with code to handle the error appropriately.
-	        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-	        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	        abort();
-	    }
-	}
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-}
-
-#pragma mark - Fetched results controller
-
-- (NSFetchedResultsController *)fetchedResultsController
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
-	     // Replace this implementation with code to handle the error appropriately.
-	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		Article *a = [cache objectAtIndex: indexPath.row];
+	    [[FeedzCache sharedCache] deleteArticle: a];
+		cache = [FeedzCache sharedCache].cache;
 	}
-    
-    return _fetchedResultsController;
-}    
+	if (editingStyle == UITableViewCellEditingStyleInsert)
+	{
+		Article *a = [cache objectAtIndex: indexPath.row];
+		[[FeedzCache sharedCache] saveArticle: a];
+		cache = [FeedzCache sharedCache].cache;
+	}
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+	Article *a = [cache objectAtIndex: indexPath.row];
+	cell.textLabel.text = a.title;
+}
+
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {

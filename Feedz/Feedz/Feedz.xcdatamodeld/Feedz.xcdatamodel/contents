@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14C78c" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Article" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bigImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="images" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="lDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="littleImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seeder" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="facebook_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="has_cnet" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="has_gizmodo" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Article" positionX="261" positionY="-51" width="128" height="208"/>
+        <element name="User" positionX="261" positionY="270" width="128" height="118"/>
     </elements>
 </model>
