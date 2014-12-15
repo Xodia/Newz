@@ -11,6 +11,13 @@
                 <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.20869921784381629" green="0.38098624509625789" blue="0.66224371693121697" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="0.0"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="7bK-jq-Zjz" kind="relationship" relationship="rootViewController" id="tsl-Nk-0bq"/>
@@ -32,34 +39,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6CU-9A-Coh">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="77" width="560" height="17"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cYe-TF-YvT">
+                                <rect key="frame" x="0.0" y="130" width="600" height="195"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="195" id="8ag-aR-VDS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="42" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="hSA-ld-OJw">
+                                <rect key="frame" x="24" y="339" width="553" height="153"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="153" id="Go0-GG-ozo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKQ-n7-Voq">
+                                <rect key="frame" x="231" y="519" width="139" height="32"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.50980392159999999" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="139" id="1vr-FS-Inl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="17"/>
+                                <state key="normal" title="Read more">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CECI EST UN TITRE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="sfn-Ba-NUt">
+                                <rect key="frame" x="10" y="79" width="581" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="061-en-WFp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="24"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6CU-9A-Coh" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="6uG-oB-MIv"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="9D6-Wc-G82"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="13" id="OxQ-OM-cnv"/>
-                            <constraint firstItem="6CU-9A-Coh" firstAttribute="bottom" secondItem="GAO-Cl-Wes" secondAttribute="top" id="gbG-6e-LSn"/>
-                            <constraint firstItem="6CU-9A-Coh" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="nXx-Fl-qqZ"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerX" secondItem="6CU-9A-Coh" secondAttribute="centerX" id="sTG-Vd-eFe"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="4" id="vOh-kh-1B1"/>
+                            <constraint firstItem="cYe-TF-YvT" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="0SZ-P3-bFX"/>
+                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-6" id="4wZ-b4-01m"/>
+                            <constraint firstItem="hSA-ld-OJw" firstAttribute="top" secondItem="cYe-TF-YvT" secondAttribute="bottom" constant="14" id="BY0-zN-0V1"/>
+                            <constraint firstItem="lKQ-n7-Voq" firstAttribute="centerX" secondItem="hSA-ld-OJw" secondAttribute="centerX" id="EqA-4Y-YZb"/>
+                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="15" id="JQo-5v-mvz"/>
+                            <constraint firstItem="lKQ-n7-Voq" firstAttribute="top" secondItem="hSA-ld-OJw" secondAttribute="bottom" constant="27" id="Jse-um-zur"/>
+                            <constraint firstAttribute="trailing" secondItem="cYe-TF-YvT" secondAttribute="trailing" id="LCA-0d-XG6"/>
+                            <constraint firstItem="cYe-TF-YvT" firstAttribute="top" secondItem="sfn-Ba-NUt" secondAttribute="bottom" constant="8" symbolic="YES" id="Udb-lR-qZg"/>
+                            <constraint firstItem="hSA-ld-OJw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="8" id="UqE-pU-PWm"/>
+                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="centerX" secondItem="cYe-TF-YvT" secondAttribute="centerX" id="XY0-kZ-43z"/>
+                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="YtD-GO-cOT"/>
+                            <constraint firstItem="cYe-TF-YvT" firstAttribute="centerX" secondItem="hSA-ld-OJw" secondAttribute="centerX" id="mhv-2r-p8S"/>
+                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-6" id="pM0-w4-5Pm"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4wZ-b4-01m"/>
+                                <exclude reference="YtD-GO-cOT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Article" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
-                        <outlet property="webView" destination="6CU-9A-Coh" id="gtx-me-oJK"/>
+                        <outlet property="contentLabel" destination="hSA-ld-OJw" id="CXI-ft-MUf"/>
+                        <outlet property="imageArticle" destination="cYe-TF-YvT" id="NBo-wt-Bo7"/>
+                        <outlet property="readMoreButton" destination="lKQ-n7-Voq" id="Vql-V5-x4O"/>
+                        <outlet property="titleLabel" destination="sfn-Ba-NUt" id="uFm-uj-9Qa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -99,13 +144,13 @@
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
                                             <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="19"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.20869921784381629" green="0.38098624509625789" blue="0.66224371693121697" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
                                 </connections>
@@ -117,7 +162,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Articles" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,6 +174,11 @@
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.29803921570000003" green="0.50980392159999999" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="GKi-kA-LjT"/>

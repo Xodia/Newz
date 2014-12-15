@@ -46,6 +46,8 @@
 	return shared;
 }
 
+
+
 // Called when data has downloaded and parsing has begun
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {
@@ -72,6 +74,7 @@
 	a.date = item.date;
 	a.updated = item.updated;
 
+	
 	[[FeedzCache sharedCache] insertArticle: a];
 }
 

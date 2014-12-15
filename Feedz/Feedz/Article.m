@@ -11,7 +11,7 @@
 
 @implementation Article
 
-@synthesize identifier, title, link, date, updated, summary, content, author, entity;
+@synthesize identifier, title, link, date, updated, summary, content, author, entity, parsedHTML;
 
 - (instancetype) initWithEntity: (NSManagedObject *) object
 {
@@ -27,6 +27,10 @@
 			author = [object valueForKey: @"author"];
 			date = [object valueForKey: @"date"];
 			updated = [object valueForKey: @"updated"];
+			
+			parsedHTML = [HTMLDocument documentWithString: summary];
+			NSLog(@"ParsedHTML %@", parsedHTML);
+			NSLog(@"Summary %@", summary);
 		}
 		@catch (NSException *exception) {
 			NSLog(@"Exception: %@", exception);

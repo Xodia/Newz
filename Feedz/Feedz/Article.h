@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "HTMLReader.h"
 
 @interface Article : NSObject
 
@@ -20,6 +21,8 @@
 @property (nonatomic, copy) NSString *summary; // Description of item
 @property (nonatomic, copy) NSString *content; // More detailed content (if available)
 @property (nonatomic, copy) NSString *author; // Item author
+
+@property (nonatomic, strong) HTMLDocument *parsedHTML;
 
 - (instancetype) initWithEntity: (NSManagedObject *) object;
 
