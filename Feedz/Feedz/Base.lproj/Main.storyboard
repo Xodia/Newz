@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -11,7 +10,7 @@
                 <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.20869921784381629" green="0.38098624509625789" blue="0.66224371693121697" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.97287939150000002" green="0.1741414054" blue="0.3912854087" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="0.0"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,71 +39,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cYe-TF-YvT">
-                                <rect key="frame" x="0.0" y="130" width="600" height="195"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="189"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="195" id="8ag-aR-VDS"/>
+                                    <constraint firstAttribute="height" constant="189" id="1A0-YE-S4f"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="42" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="hSA-ld-OJw">
-                                <rect key="frame" x="24" y="339" width="553" height="153"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="153" id="Go0-GG-ozo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="14"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKQ-n7-Voq">
-                                <rect key="frame" x="231" y="519" width="139" height="32"/>
-                                <color key="backgroundColor" red="0.29803921570000003" green="0.50980392159999999" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="231" y="534" width="139" height="32"/>
+                                <color key="backgroundColor" red="0.97287939150000002" green="0.1741414054" blue="0.3912854087" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="1vr-FS-Inl"/>
+                                    <constraint firstAttribute="width" constant="139" id="hVV-RY-plm"/>
+                                    <constraint firstAttribute="width" constant="139" id="r1h-2k-S9w"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="17"/>
                                 <state key="normal" title="Read more">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.97287939150000002" green="0.1741414054" blue="0.3912854087" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1vr-FS-Inl"/>
+                                        <exclude reference="hVV-RY-plm"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="readMoreButtonPushed:" destination="JEX-9P-axG" eventType="touchUpInside" id="GV2-p3-uPG"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CECI EST UN TITRE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="sfn-Ba-NUt">
-                                <rect key="frame" x="10" y="79" width="581" height="43"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zd-aL-XVW">
+                                <rect key="frame" x="0.0" y="256" width="600" height="278"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="061-en-WFp"/>
+                                    <constraint firstAttribute="height" constant="278" id="ZWK-5j-X92"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="24"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cYe-TF-YvT" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="0SZ-P3-bFX"/>
-                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-6" id="4wZ-b4-01m"/>
-                            <constraint firstItem="hSA-ld-OJw" firstAttribute="top" secondItem="cYe-TF-YvT" secondAttribute="bottom" constant="14" id="BY0-zN-0V1"/>
-                            <constraint firstItem="lKQ-n7-Voq" firstAttribute="centerX" secondItem="hSA-ld-OJw" secondAttribute="centerX" id="EqA-4Y-YZb"/>
-                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="15" id="JQo-5v-mvz"/>
-                            <constraint firstItem="lKQ-n7-Voq" firstAttribute="top" secondItem="hSA-ld-OJw" secondAttribute="bottom" constant="27" id="Jse-um-zur"/>
-                            <constraint firstAttribute="trailing" secondItem="cYe-TF-YvT" secondAttribute="trailing" id="LCA-0d-XG6"/>
-                            <constraint firstItem="cYe-TF-YvT" firstAttribute="top" secondItem="sfn-Ba-NUt" secondAttribute="bottom" constant="8" symbolic="YES" id="Udb-lR-qZg"/>
-                            <constraint firstItem="hSA-ld-OJw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="8" id="UqE-pU-PWm"/>
-                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="centerX" secondItem="cYe-TF-YvT" secondAttribute="centerX" id="XY0-kZ-43z"/>
-                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="YtD-GO-cOT"/>
-                            <constraint firstItem="cYe-TF-YvT" firstAttribute="centerX" secondItem="hSA-ld-OJw" secondAttribute="centerX" id="mhv-2r-p8S"/>
-                            <constraint firstItem="sfn-Ba-NUt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-6" id="pM0-w4-5Pm"/>
+                            <constraint firstItem="3zd-aL-XVW" firstAttribute="trailing" secondItem="cYe-TF-YvT" secondAttribute="trailing" id="2ZO-6D-SYP"/>
+                            <constraint firstItem="lKQ-n7-Voq" firstAttribute="top" secondItem="3zd-aL-XVW" secondAttribute="bottom" id="3V2-Kp-erc"/>
+                            <constraint firstAttribute="trailing" secondItem="cYe-TF-YvT" secondAttribute="trailing" id="SkU-pA-BiI"/>
+                            <constraint firstItem="3zd-aL-XVW" firstAttribute="centerX" secondItem="lKQ-n7-Voq" secondAttribute="centerX" id="V8C-tx-ZMi"/>
+                            <constraint firstItem="3zd-aL-XVW" firstAttribute="leading" secondItem="cYe-TF-YvT" secondAttribute="leading" id="XxG-CM-skD"/>
+                            <constraint firstItem="cYe-TF-YvT" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="enQ-yp-EfD"/>
+                            <constraint firstItem="3zd-aL-XVW" firstAttribute="top" secondItem="cYe-TF-YvT" secondAttribute="bottom" constant="3" id="m50-ZV-OyE"/>
+                            <constraint firstItem="cYe-TF-YvT" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="nAT-Ol-r5D"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="4wZ-b4-01m"/>
-                                <exclude reference="YtD-GO-cOT"/>
-                            </mask>
-                        </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Article" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="contentLabel" destination="hSA-ld-OJw" id="CXI-ft-MUf"/>
+                        <outlet property="contentLabel" destination="3zd-aL-XVW" id="w8Q-PX-Av2"/>
                         <outlet property="imageArticle" destination="cYe-TF-YvT" id="NBo-wt-Bo7"/>
                         <outlet property="readMoreButton" destination="lKQ-n7-Voq" id="Vql-V5-x4O"/>
-                        <outlet property="titleLabel" destination="sfn-Ba-NUt" id="uFm-uj-9Qa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -174,7 +165,7 @@
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.29803921570000003" green="0.50980392159999999" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.97287939150000002" green="0.1741414054" blue="0.3912854087" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,6 +181,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="Tll-UG-LXB"/>
     </inferredMetricsTieBreakers>
 </document>

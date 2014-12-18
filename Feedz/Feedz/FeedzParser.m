@@ -10,6 +10,7 @@
 #import <MWFeedParser/MWFeedParser.h>
 #import "Article.h"
 #import "FeedzCache.h"
+#import "HTMLDocument.h"
 
 #define GIZMODO_RSS @"http://feeds.gawker.com/gizmodo/full.rss"
 
@@ -63,7 +64,7 @@
 // Provides info about a feed item
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-	//NSLog(@"ParsingDidParseFeedItem: %@", item);
+	NSLog(@"ParsingDidParseFeedItem: %@", item);
 	Article *a = [[Article alloc] init];
 	a.title = item.title;
 	a.content = item.content;
@@ -73,9 +74,10 @@
 	a.author = item.author;
 	a.date = item.date;
 	a.updated = item.updated;
+	a.parsedHTML = [HTMLDocument documentWithString: a.summary];
 
-	
 	[[FeedzCache sharedCache] insertArticle: a];
+	NSLog(@"FeedzCache :%@", [FeedzCache sharedCache]);
 }
 
 // Parsing complete or stopped at any time by `stopParsing`

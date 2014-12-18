@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28A550E981444DABB6C06C82 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA1FD498B54413CBDBB6951 /* libPods.a */; };
+		4C2D964D1A423EA6004B6C7B /* dark-blue-christmas-background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C2D964C1A423EA6004B6C7B /* dark-blue-christmas-background.jpg */; };
 		4C39D74E1A39D7D5008668E6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39D74D1A39D7D5008668E6 /* User.m */; };
 		4C39D7511A39D88C008668E6 /* FeedzParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39D7501A39D88C008668E6 /* FeedzParser.m */; };
 		4C39D7871A3DFCFB008668E6 /* HTMLComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39D7631A3DFCFB008668E6 /* HTMLComment.m */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C2D964C1A423EA6004B6C7B /* dark-blue-christmas-background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dark-blue-christmas-background.jpg"; sourceTree = "<group>"; };
 		4C39D74C1A39D7D5008668E6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4C39D74D1A39D7D5008668E6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4C39D74F1A39D88C008668E6 /* FeedzParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedzParser.h; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		4C3C36201A1BFABF003D8BA7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C2D964C1A423EA6004B6C7B /* dark-blue-christmas-background.jpg */,
 				4C3C36211A1BFABF003D8BA7 /* Info.plist */,
 				4C3C36221A1BFABF003D8BA7 /* main.m */,
 			);
@@ -385,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C2D964D1A423EA6004B6C7B /* dark-blue-christmas-background.jpg in Resources */,
 				4C3C36321A1BFABF003D8BA7 /* Main.storyboard in Resources */,
 				4C3C36371A1BFABF003D8BA7 /* LaunchScreen.xib in Resources */,
 				4C3C36341A1BFABF003D8BA7 /* Images.xcassets in Resources */,

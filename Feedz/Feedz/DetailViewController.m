@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "Article.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface DetailViewController ()
 //@property (strong, nonatomic) IBOutlet UIWebView *webView;
@@ -15,7 +16,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageArticle;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *contentLabel;
+@property (strong, nonatomic) IBOutlet UITextView *contentLabel;
 @property (strong, nonatomic) IBOutlet UIButton *readMoreButton;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
 
@@ -40,15 +41,15 @@
 	    self.detailDescriptionLabel.text = [self.detailItem title];
 		//[_webView loadHTMLString: _detailItem.summary baseURL:nil];
 		
-		[self renderArticle: _detailItem];
+		[self renderArticle: self.detailItem];
 	}
 }
 
 - (void) renderArticle: (Article *) article
 {
 	HTMLDocument *document = article.parsedHTML;
-	
-	[_titleLabel setText: article.title];
+	NSLog(@"Article : %@", article);
+	[self setTitle: article.title];
 	NSArray *a =  [document nodesMatchingSelector: @"p"];
 
 	HTMLElement *firstElement = a[0];
@@ -64,6 +65,19 @@
 			NSDictionary *attributes = urlImage.attributes;
 			NSString *src = [attributes objectForKey: @"src"];
 			NSLog(@"SRC: %@", src);
+			
+			NSURL *url = [NSURL URLWithString: src];
+			NSURLRequest *request = [NSURLRequest requestWithURL: url];
+			
+			__weak DetailViewController *weakSelf = self;
+			
+			[_imageArticle setImageWithURLRequest: request placeholderImage: nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+				
+				weakSelf.imageArticle.image = image;
+				
+			} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+				
+			}];
 		}
 		NSLog(@"Image.content:%@", url);
 	}
@@ -80,13 +94,30 @@
 		NSLog(@"Content Not here : %@", secondElement.childElementNodes);
 		[_contentLabel setText: secondElement.textContent];
 	}
+	
+
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	[self configureView];
-} 
+	
+	CGSize sizeThatShouldFitTheContent = [_contentLabel sizeThatFits:_contentLabel.frame.size];
+	
+	NSLayoutConstraint *_descriptionHeightConstraint = [NSLayoutConstraint constraintWithItem: _contentLabel
+																					attribute:NSLayoutAttributeHeight
+																					relatedBy:NSLayoutRelationEqual
+																					   toItem:nil
+																					attribute:NSLayoutAttributeNotAnAttribute
+																				   multiplier:0.f
+																					 constant:100];
+	
+	[_contentLabel addConstraint:_descriptionHeightConstraint];
+	
+	[_descriptionHeightConstraint setConstant: sizeThatShouldFitTheContent.height + 40];
+	[_contentLabel layoutIfNeeded];
+}
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
@@ -96,6 +127,9 @@
 - (IBAction) readMoreButtonPushed:(id)sender
 {
 	// URL VERS SAFARI
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:_detailItem.link]];
+
 }
 
 - (IBAction) shareButtonPushed:(id)sender
