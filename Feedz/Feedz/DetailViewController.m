@@ -48,23 +48,36 @@
 - (void) renderArticle: (Article *) article
 {
 	HTMLDocument *document = article.parsedHTML;
-	NSLog(@"Article : %@", article);
 	[self setTitle: article.title];
+	
+	UIFont* titleFont = [UIFont fontWithName:@"QuicksandBold-Regular" size:15];
+	
+	CGSize requestedTitleSize = [self.title sizeWithFont:titleFont];
+	CGFloat titleWidth = MIN(500, requestedTitleSize.width);
+	
+	UILabel* tlabel= [[UILabel alloc] initWithFrame:CGRectMake(self.navigationItem.titleView.frame.origin.x	, self.navigationItem.titleView.frame.origin.y, titleWidth, 40)];
+	tlabel.text = self.title;
+	tlabel.textColor= [UIColor whiteColor];
+	tlabel.backgroundColor =[UIColor clearColor];
+	tlabel.adjustsFontSizeToFitWidth = YES;
+	tlabel.font = titleFont;
+	
+	self.navigationItem.titleView = tlabel;
+	
+	NSLog(@"Summary: %@", article.summary);
 	NSArray *a =  [document nodesMatchingSelector: @"p"];
-
+	if (a.count == 0)
+		return;
+	
 	HTMLElement *firstElement = a[0];
-	NSArray *a_ = [firstElement nodesMatchingSelector: @"img"];
-	NSLog(@"FirstElement.imgs: %@", a_);
-	if (a_.count > 0)
+	NSArray *a_ = [document nodesMatchingSelector: @"img"];
+	if (a_ && a_.count > 0)
 	{
 		HTMLElement *urlImage = a_[0];
-		NSString *url = urlImage.textContent;
-		NSLog(@"Attributes:  %@", urlImage.attributes);
 		if (urlImage.attributes)
 		{
 			NSDictionary *attributes = urlImage.attributes;
 			NSString *src = [attributes objectForKey: @"src"];
-			NSLog(@"SRC: %@", src);
 			
 			NSURL *url = [NSURL URLWithString: src];
 			NSURLRequest *request = [NSURLRequest requestWithURL: url];
@@ -76,33 +89,75 @@
 				weakSelf.imageArticle.image = image;
 				
 			} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-				
+				weakSelf.imageArticle.hidden = YES;
+				weakSelf.imageArticle = nil;
+				weakSelf.contentLabel.frame =CGRectMake(0, 50, weakSelf.contentLabel.frame.size.width,  weakSelf.contentLabel.frame.size.height);
 			}];
 		}
-		NSLog(@"Image.content:%@", url);
+		else
+		{
+			_imageArticle.hidden = YES;
+			_imageArticle = nil;
+			_contentLabel.frame =CGRectMake(0, 50, _contentLabel.frame.size.width,  _contentLabel.frame.size.height);
+		}
 	}
+	else
+	{
+		_imageArticle.hidden = YES;
+		_imageArticle = nil;
+		_contentLabel.frame =CGRectMake(0, 50, _contentLabel.frame.size.width,  _contentLabel.frame.size.height);
+	}
+
 	HTMLElement *secondElement = a[1];
-	NSLog(@"Content(2):%@", secondElement);
 	if (secondElement.childElementNodes.count > 0)
 	{
-		NSLog(@"Content: %@", article.summary);
-		NSLog(@"Content(2).text:%@", secondElement.textContent);
 		[_contentLabel setText: secondElement.textContent];
 	}
 	else
 	{
-		NSLog(@"Content Not here : %@", secondElement.childElementNodes);
 		[_contentLabel setText: secondElement.textContent];
 	}
-	
+	_contentLabel.selectable = NO;
 
+
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	UITextView *tv = object;
+	
+	//Bottom vertical alignment
+	CGFloat topCorrect = ([tv bounds].size.height - [tv contentSize].height);
+	topCorrect = (topCorrect <0.0 ? 0.0 : topCorrect);
+	tv.contentOffset = (CGPoint){.x = 0, .y = -topCorrect/2};
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear: animated];
+
+	@try {
+		[_contentLabel removeObserver: self forKeyPath: @"contentSize"];
+
+	}
+	@catch (NSException *exception) {
+		
+	}
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
+	[_contentLabel addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+
 	// Do any additional setup after loading the view, typically from a nib.
 	[self configureView];
-	
+    
+    // View Attributes
+    self.view.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0)  alpha:1];
+    self.navigationItem.leftBarButtonItem.title = @" ";
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
 	CGSize sizeThatShouldFitTheContent = [_contentLabel sizeThatFits:_contentLabel.frame.size];
 	
 	NSLayoutConstraint *_descriptionHeightConstraint = [NSLayoutConstraint constraintWithItem: _contentLabel
@@ -135,6 +190,15 @@
 - (IBAction) shareButtonPushed:(id)sender
 {
 	
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+	CGFloat fixedWidth = textView.frame.size.width;
+	CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+	CGRect newFrame = textView.frame;
+	newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+	textView.frame = newFrame;
 }
 
 @end

@@ -13,10 +13,16 @@
 #import "HTMLDocument.h"
 
 #define GIZMODO_RSS @"http://feeds.gawker.com/gizmodo/full.rss"
+#define ENGADGET_RSS @"http://podcasts.engadget.com/rss.xml"
+#define CNET_RSS @"http://www.cnet.com/rss/news/"
+#define VERGE_RSS @"http://www.theverge.com/rss/group/exclusive/index.xml"
 
 @interface FeedzParser () <MWFeedParserDelegate>
 {
 	MWFeedParser *feedParser;
+	MWFeedParser *efeedParser;
+	MWFeedParser *cfeedParser;
+	MWFeedParser *vfeedParser;
 }
 @end
 
@@ -27,10 +33,18 @@
 	if (self = [super init])
 	{
 		NSURL *feedURL = [NSURL URLWithString:GIZMODO_RSS];
+		NSURL *vfeedURL = [NSURL URLWithString:VERGE_RSS];
+		
 		feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
 		feedParser.delegate = self;
 		feedParser.connectionType = ConnectionTypeAsynchronously;
 		[feedParser parse];
+		
+		
+		vfeedParser = [[MWFeedParser alloc] initWithFeedURL:vfeedURL];
+		vfeedParser.delegate = self;
+		vfeedParser.connectionType = ConnectionTypeAsynchronously;
+		[vfeedParser parse];
 
 	}
 	return  self;

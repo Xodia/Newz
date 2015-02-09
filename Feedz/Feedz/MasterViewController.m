@@ -39,16 +39,34 @@
 
 - (void)viewDidLoad {
 	
+	UIFont* titleFont = [UIFont fontWithName:@"QuicksandBold-Regular" size:20];
+
+	CGSize requestedTitleSize = [@"FEEDZ" sizeWithFont:titleFont];
+	CGFloat titleWidth = MIN(399, requestedTitleSize.width);
+
+	UILabel* tlabel= [[UILabel alloc] initWithFrame:CGRectMake(self.navigationItem.titleView.frame.origin.x	, self.navigationItem.titleView.frame.origin.y, titleWidth, 40)];
+	tlabel.text = @"FEEDZ";
+	tlabel.textColor= [UIColor whiteColor];
+	tlabel.backgroundColor =[UIColor clearColor];
+	tlabel.adjustsFontSizeToFitWidth = YES;
+	tlabel.font = titleFont;
+
+	self.navigationItem.titleView = tlabel;
+	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(receivedNewArticle:)
 												 name:@"NewArticle"
 											   object:nil];
-	
+    
+    // View Attributes
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
 	cache = [[FeedzCache sharedCache] cache];
 	
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	//self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
 	self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
@@ -106,6 +124,18 @@
 		[[FeedzCache sharedCache] saveArticle: a];
 		cache = [FeedzCache sharedCache].cache;
 	}
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row % 2 == 0)
+        cell.contentView.backgroundColor = [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1];
+    else
+        cell.contentView.backgroundColor = [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1];
+    
+    cell.textLabel.font = [UIFont fontWithName:@"QuicksandBold-Regular" size:15.0f];
+    
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath

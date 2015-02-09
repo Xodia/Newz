@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28A550E981444DABB6C06C82 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA1FD498B54413CBDBB6951 /* libPods.a */; };
+		4C06C4951A47400400A5C1D0 /* Quicksand_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF1A2DCD1A4714DF00F3A6E3 /* Quicksand_Bold.ttf */; };
 		4C2D964D1A423EA6004B6C7B /* dark-blue-christmas-background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C2D964C1A423EA6004B6C7B /* dark-blue-christmas-background.jpg */; };
 		4C39D74E1A39D7D5008668E6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39D74D1A39D7D5008668E6 /* User.m */; };
 		4C39D7511A39D88C008668E6 /* FeedzParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C39D7501A39D88C008668E6 /* FeedzParser.m */; };
@@ -38,6 +39,8 @@
 		4C3C36431A1BFABF003D8BA7 /* FeedzTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C36421A1BFABF003D8BA7 /* FeedzTests.m */; };
 		4CB416041A34F7C000DD5717 /* FeedzCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB416031A34F7C000DD5717 /* FeedzCache.m */; };
 		4CB416071A3535AD00DD5717 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB416061A3535AD00DD5717 /* Article.m */; };
+		DF1A2DD11A47186B00F3A6E3 /* machine2.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1A2DCF1A47186B00F3A6E3 /* machine2.png */; };
+		DF1A2DD41A471E6200F3A6E3 /* menu48.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1A2DD31A471E6200F3A6E3 /* menu48.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,9 @@
 		4CB416061A3535AD00DD5717 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		68AD730F339F6D8A77EE04C6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7DED2F210A2EBF4E87095EEF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DF1A2DCD1A4714DF00F3A6E3 /* Quicksand_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Bold.ttf; sourceTree = "<group>"; };
+		DF1A2DCF1A47186B00F3A6E3 /* machine2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = machine2.png; sourceTree = "<group>"; };
+		DF1A2DD31A471E6200F3A6E3 /* menu48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu48.png; sourceTree = "<group>"; };
 		FFA1FD498B54413CBDBB6951 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -214,11 +220,11 @@
 		4C3C361F1A1BFABF003D8BA7 /* Feedz */ = {
 			isa = PBXGroup;
 			children = (
+				DF1A2DCA1A4711A900F3A6E3 /* Assets */,
 				4C39D7611A3DFCFB008668E6 /* Code */,
 				4CB416011A34F78F00DD5717 /* Singletons */,
 				4C7F96871A1F9233008081CD /* Models */,
 				4C7F96861A1F922B008081CD /* Controllers */,
-				4C7F96851A1F9223008081CD /* Views */,
 				4C3C36241A1BFABF003D8BA7 /* AppDelegate.h */,
 				4C3C36251A1BFABF003D8BA7 /* AppDelegate.m */,
 				4C3C36301A1BFABF003D8BA7 /* Main.storyboard */,
@@ -255,13 +261,6 @@
 				4C3C36411A1BFABF003D8BA7 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4C7F96851A1F9223008081CD /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		4C7F96861A1F922B008081CD /* Controllers */ = {
@@ -304,6 +303,32 @@
 				FFA1FD498B54413CBDBB6951 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF1A2DCA1A4711A900F3A6E3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				DF1A2DCE1A47186400F3A6E3 /* Images */,
+				DF1A2DCB1A4711B000F3A6E3 /* Fonts */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		DF1A2DCB1A4711B000F3A6E3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DF1A2DCD1A4714DF00F3A6E3 /* Quicksand_Bold.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		DF1A2DCE1A47186400F3A6E3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DF1A2DCF1A47186B00F3A6E3 /* machine2.png */,
+				DF1A2DD31A471E6200F3A6E3 /* menu48.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +382,7 @@
 				TargetAttributes = {
 					4C3C361C1A1BFABF003D8BA7 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = WJ6XWVYZ66;
 					};
 					4C3C363B1A1BFABF003D8BA7 = {
 						CreatedOnToolsVersion = 6.1;
@@ -388,10 +414,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C06C4951A47400400A5C1D0 /* Quicksand_Bold.ttf in Resources */,
 				4C2D964D1A423EA6004B6C7B /* dark-blue-christmas-background.jpg in Resources */,
 				4C3C36321A1BFABF003D8BA7 /* Main.storyboard in Resources */,
 				4C3C36371A1BFABF003D8BA7 /* LaunchScreen.xib in Resources */,
+				DF1A2DD11A47186B00F3A6E3 /* machine2.png in Resources */,
 				4C3C36341A1BFABF003D8BA7 /* Images.xcassets in Resources */,
+				DF1A2DD41A471E6200F3A6E3 /* menu48.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +622,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Feedz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feedz/Feedz-Bridging-Header.h";
@@ -607,6 +637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Feedz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feedz/Feedz-Bridging-Header.h";
